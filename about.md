@@ -4,15 +4,12 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+I'm Dylan, a Hardware Engineer for pay and for fun too! I decided to start this blog as a place for me to share my projects, try to start some interesting discussions and share some things I think are cool.
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
-
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
-
-
-[jekyll-organization]: https://github.com/jekyll
+Stay tuned for...
+- Hardware & Firmware Projects
+- Experiments in 3D Modelling and Novel Prototyping Techniques
+- Tool and Software Reviews
+- General Chit-Chat
+- Figuring out how to write an engaging blog hidden in the howling expanse of the internet
+...and so much more!
