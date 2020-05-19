@@ -29,11 +29,8 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-analytics
-  
-jekyll_analytics:
-  GoogleAnalytics:          # Add, if you want to track with Google Analytics
-    id: UA-167134204-1      # Required - replace with your tracking id
-    anonymizeIp: false      # Optional - Default: false - set to true for anonymized tracking
+
+google_analytics: UA-167134204-1
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
