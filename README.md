@@ -1,1 +1,0 @@
-# bartlettD.github.io
