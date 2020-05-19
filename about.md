@@ -12,4 +12,5 @@ Stay tuned for...
 - Tool and Software Reviews
 - General Chit-Chat
 - Figuring out how to write an engaging blog hidden in the howling expanse of the internet
+
 ...and so much more!
