@@ -32,6 +32,8 @@ plugins:
 
 google_analytics: UA-167134204-1
 
+paginate:         5
+
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
