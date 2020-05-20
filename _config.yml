@@ -24,7 +24,7 @@ github_username:  bartlettD
 
 # Build settings
 markdown: kramdown
-theme: minima
+remote_theme: poole/hyde
 plugins:
   - jekyll-feed
   - jekyll-sitemap
