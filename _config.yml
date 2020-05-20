@@ -26,6 +26,7 @@ github_username:  bartlettD
 markdown: kramdown
 remote_theme: bartlettD/hyde
 plugins:
+  - jekyll-remote-theme
   - jekyll-feed
   - jekyll-sitemap
 
