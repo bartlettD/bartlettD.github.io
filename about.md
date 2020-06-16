@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-I'm Dylan, a Hardware Engineer for pay and for fun too! I decided to start this blog as a place for me to share my projects, try to start some interesting discussions and share some things I think are cool.
+I'm Dylan, a Hardware Engineer! I decided to start this blog as a place for me to share my projects, try to start some interesting discussions and share some things I think are cool.
 
 Stay tuned for...
 - Hardware & Firmware Projects
