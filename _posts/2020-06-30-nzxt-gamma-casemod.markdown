@@ -6,8 +6,8 @@ categories: electronics EAGLE USB PCB
 ---
 This is a write-up of a project I worked on in 2018 when this blog didn't exist.
 
-The schematic and board design is available from the (Github Project)
-[https://github.com/bartlettD/nzxt-gamma-usb3].
+The schematic and board design is available from the [Github Project](
+https://github.com/bartlettD/nzxt-gamma-usb3).
 
 Quite a few years ago, I decided to build my own PC; As time marched on I've 
 replaced all of the components of the system at least once, except, for the case
@@ -22,8 +22,8 @@ Fortunately, it also came with a Power Supply too! I kid, never use a power
 supply that comes with your case, just dont, please.
 
 Rolling into 2018, I'd just gotten too lazy to reach around the back of my PC to
- plug in an external hard drive to get that sweet, sweet USB 3.0 speed 
- improvements. So, time to replace those slow boring 2.0 ports and bring this 
+plug in an external hard drive to get those sweet, sweet USB 3.0 speed 
+improvements. So, time to replace those slow boring 2.0 ports and bring this 
  case into 2008!
 
 ## What're We Working With?
@@ -49,19 +49,29 @@ noisy analogue audio section.
 
 ### Intel HD-Audio
 
-I don't have any issues with the audio options that came with the case, but if I'm going to replace the USB ports the whole PCB has to go!
+I don't have any issues with the audio options that came with the case, but if 
+I'm going to replace the USB ports the whole PCB has to go!
 
-In 2004, Intel created the (HD Audio Specification)
-[https://en.wikipedia.org/wiki/Intel_High_Definition_Audio] that has been a staple of PCs since.
+In 2004, Intel created the [HD Audio Specification](
+https://en.wikipedia.org/wiki/Intel_High_Definition_Audio) that has been a 
+staple of PCs since.
 
 The specification has a lot of features such as support for more channels, 
-higher sampling resolution and rates as well as jack detection, sensing and retasking.
+higher sampling resolution and rates as well as jack detection, sensing and 
+retasking.
 
-Most of this doesn't matter, as I'm only implementing a single headphone and microphone channel. However, its worth discussing how exactly the jack detection feature works in HD Audio front panels.
+Most of this doesn't matter, as I'm only implementing a single headphone and 
+microphone channel. However, its worth discussing how exactly the jack 
+detection feature works in HD Audio front panels.
 
-The HD Audio spec does things a little differently when it comes to jack detection compared to other common methods. The specification requires that your jack contains a normally open, isolated switch that is closed when a plug is inserted.
+The HD Audio spec does things a little differently when it comes to jack 
+detection compared to other common methods. The specification requires that 
+your jack contains a normally open, isolated switch that is closed when a plug 
+is inserted.
 
-One end of this switch is connected to a resistor network provided on the motherboard and the other side of the switch is connected to a specific resistor value that is also placed on the motherboard to ground.
+One end of this switch is connected to a resistor network provided on the 
+motherboard and the other side of the switch is connected to a specific 
+resistor value that is also placed on the motherboard to ground.
 
 // TODO: Get and image of this.
 
@@ -73,17 +83,38 @@ The resistor sensing network technique is fairly cheap to implement in silicon a
 
 *Unfortunately*, those Normally Open Isolated Switch type of 3.5mm jacks are almost impossible to find. CUI Inc made the original jacks that came with the case but after trawling their website, the closed matching model is the SJ1-354X series; Which doesn't come in an isolated switch option.
 
-Additionally, the coloured ring surrounding the jack is not an option for any of the products on their website. What I'm looking for is either obsolete or was a custom job for NZXT. ~Yay~
+Additionally, the coloured ring surrounding the jack is not an option for any of the products on their website. What I'm looking for is either obsolete or was a custom job for NZXT. *Yay*
 
 Looks like I'm breaking out the solder sucker and doing some salvage work.
 
 ### USB 3.0
 
+I'm not going to write a lot about USB 3.0 here, as for this project I'm really
+only interested in one minor facet of the physical layer, the ports, signal
+routing and cabling.
+
+So, briefly, lets talk about USB ports; Originally, USB Type-A ports had 4 pins.
+A `VBUS` pin, which provides 5V for a connected peripheral, two differential `D-`
+and `D+` pins and finally a `GND` pin.
+
+This worked fine for many years, but there is an issue with only having a single
+differential pair between a host and peripheral, only one device can use the pair
+at a time (or Half-Duplex to be technical).
+
+Additionally, the bit-rate for USB 2.0 is limited to a theoretical maximum of
+0.48 Gigabits/second.
+
+USB 3.0 solves these problems by adding a transmit and receive differential pair
+to the physical layer and increases the maximum bit-rate to 5 Gbps!
+
+There's a lot more going on under the hood, 
+
+
 ## The Actual Design
 
 Starting things off, I used a vernier to find the dimensions of the original board so I can simply replace the whole thing in one fell swoop.
 
-Firing up EAGLE(I know better now, KiCAD all the way), I set up a board outline and a simple 2-layer stackup to reflect the original PCB. Finding the exact position on where to place the audio, USB and eSATA ports was much more complicated but involved a lot of measuring the centre of each port from the PCB edge and trial and error until things looked just right.
+Firing up EAGLE, I set up a board outline and a simple 2-layer stackup to reflect the original PCB. Finding the exact position on where to place the audio, USB and eSATA ports was much more complicated but involved a lot of measuring the centre of each port from the PCB edge and trial and error until things looked just right.
 
 I created a ground pours on both layers, including the separate analogue and digital planes present on the original PCB. 
 
@@ -102,7 +133,7 @@ After managing to recover the audio jacks from the original PCB I quickly assemb
 Running a smoke-test, I observed no magic smoke leakages and decided to move onto real testing.
 Plugging my set of sacrificial headphones into the jack my PC quickly switched audio outputs and behaved exactly as I would expect a headphone port to work. There wasn't anything particularly interesting testing to do beyond this so time to move on to the more interesting business of checking that USB still works!
 
-Using a USB 3.0 Flash drive, I did a few 100 MiB Sequential/Random Read and Write benchmarks using (CrystalDiskMark)[https://crystalmark.info/en/software/crystaldiskmark/] with the original 2.0 ports, the ports on the rear of my motherboard and my shiny, new, USB 3.0 front panel ports.
+Using a USB 3.0 Flash drive, I did a few 100 MiB Sequential/Random Read and Write benchmarks using [CrystalDiskMark](https://crystalmark.info/en/software/crystaldiskmark/) with the original 2.0 ports, the ports on the rear of my motherboard and my shiny, new, USB 3.0 front panel ports.
 
 ![Speed Test Results for NZXT GAMMA Casemod](https://docs.google.com/spreadsheets/d/e/2PACX-1vSBOdGg8w3AoiV5e519aPuTeUsXt7cbHnaG9BHveeQes3GPDt3eObu8IhEk3lxy2IHo7Q17O4EWyLWU/pubchart?oid=1971193007&format=image)
 
