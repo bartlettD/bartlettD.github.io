@@ -70,7 +70,8 @@ One end of this switch is connected to a resistor network provided on the
 motherboard and the other side of the switch is connected to a specific 
 resistor value that is also placed on the motherboard to ground.
 
-**TODO: Get and image of this.**
+![Realtek ALC885 Jack Detection Network](/assets/gamma_casemod/jack_det_network.png)
+[*Realtek ALC885 Jack Detection Network*](http://realtek.info/pdf/ALC885_1-1.pdf)
 
 The CODEC senses that a plug has been inserted when the switch is closed and 
 then can identify exactly which jack was used based on measurements taken of the
