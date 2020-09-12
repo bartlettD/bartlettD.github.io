@@ -6,10 +6,10 @@ categories: electronics EAGLE USB PCB
 ---
 This is a write-up of a project I worked on in 2018 when this blog didn't exist.
 
-The schematic and board design is available from the [Github Project](
+The schematic and board design are available from the [Github Project](
 https://github.com/bartlettD/nzxt-gamma-usb3).
 
-Quite a few years ago, I decided to build my own PC; As time marched on I've 
+Quite a few years ago, I decided to build my own PC; as time marched on I've 
 replaced all of the components of the system at least once, except, for the case
 I originally started with.
 
@@ -18,15 +18,17 @@ ports, your standard 3.5mm audio interfaces and a (doomed) eSATA port. Not
 exactly the highest-end case at the time, but I had spent all my money on the 
 fun stuff like RAM and a GPU!
 
+**Take Photo of Case**
+
 Rolling into 2018, I'd just gotten too lazy to reach around the back of my PC to
 plug in an external hard drive to get those sweet, sweet USB 3.0 speed 
-improvements. So, time to replace those slow boring 2.0 ports and bring this 
+improvements. So, time to replace those slow, boring, 2.0 ports and bring this 
  case into 2008!
 
 ## What're We Working With?
 
 With the advent of USB 3.0, four new pins were added to the port meaning I'd 
-have to replace the front I/O ports with fresh, shiny, new USB 3.0 compatible 
+have to replace the front I/O ports with fresh, shiny new USB 3.0 compatible 
 ports.
 
 I popped open my case to get a closer look at the front I/O panel and understand 
@@ -36,8 +38,9 @@ held in position against the case with a small bracket. This part honestly
 surprised me as I was expecting the whole thing to be some free 
 floating connectors hot glued into place.
 
-I give the NZXT Gamma an "iFixit" repairability score of 9/10 because of this.
-:thumbs-up:
+**Image of the bracket**
+
+I give the NZXT Gamma an "iFixit" repairability score of 9/10 because of this. 👍
 
 Taking a closer look at the board, I can see that it is sensibly laid out, with 
 the audio section and USB/eSATA section clearly mounted to separate ground 
@@ -70,8 +73,8 @@ One end of this switch is connected to a resistor network provided on the
 motherboard and the other side of the switch is connected to a specific 
 resistor value that is also placed on the motherboard to ground.
 
-![Realtek ALC885 Jack Detection Network](/assets/gamma_casemod/jack_det_network.png)
-[*Realtek ALC885 Jack Detection Network*](http://realtek.info/pdf/ALC885_1-1.pdf)
+![Intel® HD Audio Front Panel Analog Header Motherboard Schematic](/assets/gamma_casemod/Intel_Jack_Detect.png)
+[*Intel® HD Audio Front Panel Analog Header Motherboard Schematic*](http://www.formfactors.org/developer%5Cspecs%5CA2928604.pdf)
 
 The CODEC senses that a plug has been inserted when the switch is closed and 
 then can identify exactly which jack was used based on measurements taken of the
@@ -89,7 +92,7 @@ and so is a good tradeoff for enabling this kind of feature.
 *Unfortunately*, those Normally Open Isolated Switch type of 3.5mm jacks are 
 almost impossible to find. CUI Inc made the original jacks that came with the 
 case but after trawling their website, the closed matching model is the SJ1-354X
-series; Which doesn't come in an isolated switch option.
+series; which doesn't come in an isolated switch option.
 
 Additionally, the coloured ring surrounding the jack is not an option for any of
 the products on their website. What I'm looking for is either obsolete or was a 
@@ -103,7 +106,7 @@ I'm not going to write a lot about USB 3.0 here, as for this project I'm really
 only interested in one minor facet of the physical layer, the ports, signal
 routing and cabling.
 
-So, briefly, lets talk about USB ports; Originally, USB Type-A ports had 4 pins.
+So, briefly, lets talk about USB ports; originally, USB Type-A ports had 4 pins.
 A `VBUS` pin, which provides 5V for a connected peripheral, two differential `D-`
 and `D+` pins and finally a `GND` pin.
 
@@ -112,38 +115,64 @@ differential pair between a host and peripheral, only one device can use the pai
 at a time (or Half-Duplex to be technical).
 
 Additionally, the bit-rate for USB 2.0 is limited to a theoretical maximum of
-0.48 Gigabits/second.
+0.48 Gigabit per second.
 
 USB 3.0 solves these problems by adding a transmit and receive differential pair
 to the physical layer and increases the maximum bit-rate to 5 Gbps!
 
-**Maybe Explain why this is? 8b/10b encoding, etc**
+![USB 3.0 Pins](/assets/gamma_casemod/USB_3_Pins.jpg)
+*[USB 3 Pins Static](https://commons.wikimedia.org/wiki/File:USB_3_Pins_static.jpg), Unconventional2, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/legalcode)*
+
+### eSATA
+
+There is a port on the original I/O board that implements the eSATA interface,
+intended for interfacing with external hard drives.
+
+Essentially, this was an interface that was dead on arrival to the market and
+never got widespread adoption because it never really made sense considering
+USB 3.0 was available at around the same time and the actual USB interface was
+not the limiting factor when it came to reading and writing to hard disks (the
+disks themselves are too slow).
+
+eSATA also doesn't provide power over the cable, meaning you need to plug an
+additional USB cable into your HDD anyway.
+
+I think thats enough that needs to be said about eSATA.
+
 ## The Actual Design
 
+Time for the fun stuff, designing the board.
+
 Starting things off, I used a vernier to find the dimensions of the original 
-board so I can simply replace the whole thing in one fell swoop.
+interface board so I can simply replace the whole thing in one fell swoop. With
+an exact copy of the board outline I can simply slot the new board into the
+bracket with no modification to the case plastics.
 
-Firing up EAGLE, I set up a board outline and a simple 2-layer stackup to 
-reflect the original PCB. Finding the exact position on where to place the audio
-, USB and eSATA ports was much more complicated but involved a lot of measuring 
-the centre of each port from the PCB edge and trial and error until things 
-looked just right.
+Finding the exact position on where to place the audio, USB and eSATA ports was 
+a bit more complicated and involved taking a few different measurement of the 
+ports in relation to the board edges and checking the mechanical drawings of the
+connectors until everything looked just right.
 
-I created a ground pours on both layers, including the separate analogue and 
-digital planes present on the original PCB. 
+Firing up EAGLE, I set up a board outline based on my measurements and a simple 
+2-layer stackup to reflect the original PCB. I also created ground pours on both
+layers, including the separate analogue and digital planes present on the original
+PCB.
 
-With all the connectors present on my PCB, layout was a pretty simple task of 
-just running traces between pins, with exception of USB 3.0 of course.
+With all the connectors present on my PCB, routing was a pretty simple task,
+with exception of USB 3.0 of course.
 
 In the case of USB 3.0, each data signal pair has to be routed together and 
-with the exact same length. This was pretty easy to achieve with EAGLE's 
-Meander tool which let me add the necessary extra length to once side of the 
-pair to achieve as close a match as possible.
+with as close to the same length as possible and should be no greater than 0.127mm (5 mils).
+This was pretty easy to achieve with EAGLE's Meander tool which let me add the 
+necessary extra length to one side of the pair to achieve as close a match as possible.
 
-Additionally, each pair has to be routed with a 50 Ohm differential transmission
+Additionally, each pair has to be routed with a 90 Ohm differential transmission
 line, actually working out the spacing and trace width needed to achieve the 
 characteristic impedance target is a bit out of scope but could be a good blog 
 post in the future(Todo list++).
+
+Apart from this bit of extra complexity, this is obviously a very simple but
+super useful board!
 
 After running my DRC, triple checking my footprints and layouts it's time to 
 generate some Gerbers and fabricate my board. A few weeks later and my bare PCB 
@@ -155,8 +184,8 @@ assembled the new design and threw it into my PC!
 
 ## The Moment of Truth
 
-Running a smoke-test, I observed no magic smoke leakages and decided to move 
-onto real testing.
+Running a smoke-test (turning it on with my hand on the power switch), I observed 
+no magic smoke leakages and decided to move onto real testing.
 
 Plugging my set of sacrificial headphones into the jack my PC quickly switched 
 audio outputs and behaved exactly as I would expect a headphone port to work. 
