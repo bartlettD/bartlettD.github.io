@@ -4,6 +4,8 @@ title:  "NZXT Gamma USB 3.0 Casemod"
 date:   2020-05-19 14:36:46 +0100
 categories: electronics EAGLE USB PCB
 ---
+![Assembled PCB](/assets/gamma_casemod/raw_and_assembled_board.jpg)
+
 This is a write-up of a project I worked on in 2018 when this blog didn't exist.
 
 The schematic and board design are available from the [Github Project](
@@ -18,7 +20,8 @@ ports, your standard 3.5mm audio interfaces and a (doomed) eSATA port. Not
 exactly the highest-end case at the time, but I had spent all my money on the 
 fun stuff like RAM and a GPU!
 
-**Take Photo of Case**
+![NZXT Gamma Case](/assets/gamma_casemod/gamma_case.jpg)
+*NZXT Gamma Case*
 
 Rolling into 2018, I'd just gotten too lazy to reach around the back of my PC to
 plug in an external hard drive to get those sweet, sweet USB 3.0 speed 
@@ -38,7 +41,8 @@ held in position against the case with a small bracket. This part honestly
 surprised me as I was expecting the whole thing to be some free 
 floating connectors hot glued into place.
 
-**Image of the bracket**
+![NZXT Gamma Front-Panel PCB Bracket](/assets/gamma_casemod/pcb_bracket.jpg)
+*NZXT Gamma Front-Panel PCB Bracket*
 
 I give the NZXT Gamma an "iFixit" repairability score of 9/10 because of this. 👍
 
