@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "NZXT Gamma USB 3.0 Casemod"
-date:   2020-05-19 14:36:46 +0100
+date:   2020-09-16 17:00:00 +0100
 categories: electronics EAGLE USB PCB
 ---
 ![Assembled PCB](/assets/gamma_casemod/raw_and_assembled_board.jpg)
